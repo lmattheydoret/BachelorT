@@ -33,9 +33,9 @@ tiab <- function(ris=NULL, searchWords=NULL) {
 # library(synthesisr)
 
 # ----------------------------------------------
-# Step 1: Read all of your downloaded RIS files.
+# Step 1: Read all of your downloaded RIS files and adjust your path
 # ----------------------------------------------
-PATH <- "/Users/leoniematthey/Desktop/Recherche/"
+# PATH <- "/Users/leoniematthey/Desktop/Recherche/"
 
 FILES <- paste0(PATH, list.files(PATH))
 
@@ -88,7 +88,7 @@ idxConnect <- (idxList$`attention deficit hyperactivity disorder` | idxList$adhd
     idxList$diagnos &
     (idxList$women | idxList$woman | idxList$female)
 # How many search hits does this yield:
-length(which(idxConnect)) #  80 hits.
+length(which(idxConnect)) #  79 hits.
 
 # -------------------------------------------
 # Step 4: Copy paste the relevant columns to excel, so that you can easily read the titles, maybe also check out the abstract.
@@ -101,8 +101,8 @@ selectColnames <- colnames(imported_filesUnique)[c(1, 3, 5, 6, 11, 12, 16, 21, 3
 
 # all 447 unique search hits:
 excelUnordered447 <- imported_filesUnique[,selectColnames]
-# 80 search hits from narrowed down search
-excelUnordered80 <- imported_filesUnique[idxConnect,selectColnames]
+# 79 search hits from narrowed down search
+excelUnordered79 <- imported_filesUnique[idxConnect,selectColnames]
 
 # Own function, with which to quickly merge Y1 and year into one column, then order that column from newest to oldes date (decreasing order)
 orderYear <- function(excel=NULL) {
@@ -122,7 +122,7 @@ orderYear <- function(excel=NULL) {
 }
 
 excel <- orderYear(excel=excelUnordered447)
-excel <- orderYear(excel=excelUnordered80)
+excel <- orderYear(excel=excelUnordered79)
 
 # For Mac (copy to clipboard, then paste in excel)
 clip <- pipe("pbcopy", "w")
